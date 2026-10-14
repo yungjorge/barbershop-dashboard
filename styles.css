@@ -19,6 +19,9 @@
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
+/* Ensure the `hidden` attribute always wins (author styles can override the UA default) */
+[hidden] { display: none !important; }
+
 body {
   font-family: 'Inter', -apple-system, system-ui, sans-serif;
   background: var(--bg);
@@ -224,7 +227,14 @@ input:focus, select:focus { outline: none; border-color: var(--gold); }
   padding: 26px; width: 100%; max-width: 420px; box-shadow: var(--shadow);
   display: flex; flex-direction: column; gap: 18px;
 }
+.modal-head { display: flex; justify-content: space-between; align-items: center; }
 .modal h2 { font-family: 'Space Grotesk', sans-serif; font-size: 18px; }
+.modal-x {
+  background: var(--bg-soft); border: 1px solid var(--border); color: var(--text-dim);
+  width: 30px; height: 30px; border-radius: 8px; cursor: pointer; font-size: 14px; line-height: 1;
+  display: grid; place-items: center; transition: background 0.15s, color 0.15s;
+}
+.modal-x:hover { background: var(--bg-hover); color: var(--text); }
 .modal form { display: flex; flex-direction: column; gap: 14px; }
 .modal-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 6px; }
 
