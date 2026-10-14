@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Clippers &amp; Co. — Shop Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">✂️</div>
+        <div class="brand-text">
+          <span class="brand-name">Clippers &amp; Co.</span>
+          <span class="brand-sub">Barbershop OS</span>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <button class="nav-item is-active" data-section="today">
+          <span class="nav-icon">📅</span> Today
+        </button>
+        <button class="nav-item" data-section="schedule">
+          <span class="nav-icon">🗓️</span> Schedule
+        </button>
+        <button class="nav-item" data-section="clients">
+          <span class="nav-icon">👥</span> Clients
+        </button>
+        <button class="nav-item" data-section="bookings">
+          <span class="nav-icon">✂️</span> Bookings
+        </button>
+        <button class="nav-item" data-section="todo">
+          <span class="nav-icon">✅</span> To-Do
+        </button>
+        <button class="nav-item" data-section="supplies">
+          <span class="nav-icon">🧴</span> Supplies
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="barber-chip">
+          <span class="barber-avatar">J</span>
+          <div class="barber-meta">
+            <span class="barber-name">Jorge</span>
+            <span class="barber-role">Master Barber</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main -->
+    <main class="main">
+      <header class="topbar">
+        <div>
+          <h1 class="page-title" id="page-title">Today</h1>
+          <p class="page-sub" id="page-sub">Your day at a glance</p>
+        </div>
+        <div class="topbar-actions">
+          <div class="date-pill" id="date-pill"></div>
+        </div>
+      </header>
+
+      <!-- TODAY -->
+      <section class="section is-active" id="section-today">
+        <div class="stat-grid">
+          <div class="stat-card">
+            <span class="stat-label">Appointments today</span>
+            <span class="stat-value" id="stat-appointments">0</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">Open tasks</span>
+            <span class="stat-value" id="stat-todos">0</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">Low stock items</span>
+            <span class="stat-value" id="stat-supplies">0</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">Total clients</span>
+            <span class="stat-value" id="stat-clients">0</span>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-head">
+            <h2>Today's Schedule</h2>
+            <span class="panel-hint">Tap an open slot to book it</span>
+          </div>
+          <div class="timeline" id="today-timeline"></div>
+        </div>
+      </section>
+
+      <!-- SCHEDULE -->
+      <section class="section" id="section-schedule">
+        <div class="panel">
+          <div class="panel-head">
+            <h2>Full Week</h2>
+            <span class="panel-hint">Upcoming appointments</span>
+          </div>
+          <div class="week-grid" id="week-grid"></div>
+        </div>
+      </section>
+
+      <!-- CLIENTS -->
+      <section class="section" id="section-clients">
+        <div class="panel">
+          <div class="panel-head">
+            <h2>Client List</h2>
+            <button class="btn btn-primary" id="btn-add-client">+ Add client</button>
+          </div>
+          <div class="table-wrap">
+            <table class="table" id="clients-table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Phone</th>
+                  <th>Preferred style</th>
+                  <th>Last visit</th>
+                  <th>Visits</th>
+                </tr>
+              </thead>
+              <tbody id="clients-body"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- BOOKINGS -->
+      <section class="section" id="section-bookings">
+        <div class="panel">
+          <div class="panel-head"><h2>Book an Appointment</h2></div>
+          <form class="book-form" id="book-form">
+            <div class="field">
+              <label>Client name</label>
+              <input type="text" id="book-name" placeholder="e.g. Marcus Johnson" required />
+            </div>
+            <div class="field">
+              <label>Service</label>
+              <select id="book-service">
+                <option>Haircut</option>
+                <option>Beard trim</option>
+                <option>Haircut + Beard</option>
+                <option>Hot towel shave</option>
+                <option>Kids cut</option>
+                <option>Line up / Shape up</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Barber</label>
+              <select id="book-barber">
+                <option>Jorge</option>
+                <option>Miguel</option>
+                <option>Dre</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Date</label>
+              <input type="date" id="book-date" required />
+            </div>
+            <div class="field">
+              <label>Time</label>
+              <input type="time" id="book-time" min="09:00" max="19:00" required />
+            </div>
+            <button type="submit" class="btn btn-primary">Book it</button>
+          </form>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><h2>Upcoming bookings</h2></div>
+          <div class="booking-list" id="booking-list"></div>
+        </div>
+      </section>
+
+      <!-- TO-DO -->
+      <section class="section" id="section-todo">
+        <div class="panel">
+          <div class="panel-head"><h2>To-Do List</h2></div>
+          <form class="todo-form" id="todo-form">
+            <input type="text" id="todo-input" placeholder="Add a task… (e.g. restock towels)" />
+            <button type="submit" class="btn btn-primary">Add</button>
+          </form>
+          <ul class="todo-list" id="todo-list"></ul>
+        </div>
+      </section>
+
+      <!-- SUPPLIES -->
+      <section class="section" id="section-supplies">
+        <div class="panel">
+          <div class="panel-head">
+            <h2>Supply Inventory</h2>
+            <button class="btn btn-primary" id="btn-add-supply">+ Add item</button>
+          </div>
+          <div class="table-wrap">
+            <table class="table" id="supplies-table">
+              <thead>
+                <tr>
+                  <th>Item</th>
+                  <th>Category</th>
+                  <th>Stock</th>
+                  <th>Status</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="supplies-body"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Add-client modal -->
+  <div class="modal-backdrop" id="modal-client" hidden>
+    <div class="modal">
+      <h2>Add client</h2>
+      <form id="client-form">
+        <div class="field"><label>Name</label><input type="text" id="client-name" required /></div>
+        <div class="field"><label>Phone</label><input type="text" id="client-phone" /></div>
+        <div class="field"><label>Preferred style</label><input type="text" id="client-style" /></div>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-ghost" data-close-modal>Cancel</button>
+          <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Add-supply modal -->
+  <div class="modal-backdrop" id="modal-supply" hidden>
+    <div class="modal">
+      <h2>Add supply item</h2>
+      <form id="supply-form">
+        <div class="field"><label>Item name</label><input type="text" id="supply-name" required /></div>
+        <div class="field"><label>Category</label><input type="text" id="supply-category" placeholder="e.g. Consumables" /></div>
+        <div class="field"><label>Starting stock</label><input type="number" id="supply-stock" min="0" value="10" /></div>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-ghost" data-close-modal>Cancel</button>
+          <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
